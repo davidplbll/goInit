@@ -33,6 +33,12 @@ type mujer struct{
 	hombre
 }
 
+type perro struct{
+	respirando bool
+	comiendo bool
+	carnivoro bool
+}
+
 func(h *hombre) respirar(){
 	h.respirando=true
 }
@@ -41,6 +47,25 @@ func(h *hombre) comer(){
 }
 func(h *hombre) pensar(){
 	h.pensando=true
+}
+func(p *perro) respirar(){
+	p.respirando=true
+}
+func(p *perro) comer(){
+	p.comiendo=true
+}
+func(p *perro) esCarnivoro() bool{
+	return p.carnivoro
+}
+
+func AnimalesCarnivoros(an animal) int  {
+	if an.esCarnivoro(){
+		return 1
+	}
+	return 0
+}
+func AnimalesRespirar(an animal)  {
+	an.respirar()
 }
 func(h *hombre) sexo() string{
 	
@@ -58,9 +83,18 @@ func humanosRespirando(hu humano)  {
 }
 
 func main()  {
-	Pedro:=new(hombre)
-	Pedro.esHombre=true
-	humanosRespirando(Pedro)
-	Maria:=new(mujer)
-	humanosRespirando(Maria)
+	// Pedro:=new(hombre)
+	// Pedro.esHombre=true
+	// humanosRespirando(Pedro)
+	// Maria:=new(mujer)
+	// humanosRespirando(Maria)
+	
+	totalCarnivoros:=0
+	Dogo:= new(perro)
+	Dogo.carnivoro=true
+	AnimalesRespirar(Dogo)
+	totalCarnivoros+=AnimalesCarnivoros(Dogo)
+	fmt.Println(totalCarnivoros)
+	fmt.Println(Dogo)
+
 }
